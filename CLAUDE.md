@@ -18,18 +18,39 @@ Application web interactive "Will you be my Valentine?" avec un design soft aest
 - **Chemin App** : [PATH]
 
 ### GitHub
-- **Repository** : Valentine-Safa (prive)
+- **Repository** : https://github.com/BarryBcr/Valentine-Safa (prive)
 - **Branch principale** : main
 
-## Workflow de Deploiement
+## Deploiement Rapide (GitHub Pages)
 
-### IMPORTANT - Double Deploiement Obligatoire
-Chaque modification doit etre deployee sur :
-1. **GitHub** : git push origin main
-2. **Serveur** : via SSH/SCP
+### Option 1 : GitHub Pages (Gratuit)
+```bash
+# 1. Aller dans Settings > Pages sur GitHub
+# 2. Source: Deploy from branch
+# 3. Branch: main, folder: / (root)
+# 4. URL: https://barrybcr.github.io/Valentine-Safa/
+```
 
-### Commandes
-[Ajouter les commandes de deploiement ici]
+### Option 2 : Rendre le repo public temporairement
+```bash
+gh repo edit BarryBcr/Valentine-Safa --visibility public
+# Activer GitHub Pages, puis remettre en prive si besoin
+```
+
+### Option 3 : Netlify Drop (instantane)
+1. Aller sur https://app.netlify.com/drop
+2. Glisser-deposer le dossier du projet
+3. URL generee immediatement
+
+### Option 4 : Vercel
+```bash
+npx vercel --prod
+```
+
+## Workflow Git
+```bash
+git add . && git commit -m "message" && git push origin main
+```
 
 ## Regles pour les Agents IA
 
