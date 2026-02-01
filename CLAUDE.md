@@ -1,11 +1,11 @@
 # Valentine - Safa - Project Context
 
 ## Overview
-[A remplir avec la description du projet]
+Application web interactive "Will you be my Valentine?" avec un design soft aesthetic rose et blanc. Le bouton "No" fuit le curseur et le bouton "Yes" declenche une celebration avec confettis.
 
 ## Stack Technique
-- **Langage** : [A definir]
-- **Hebergement** : [A definir]
+- **Langage** : HTML5, CSS3 (Flexbox), JavaScript Vanilla
+- **Hebergement** : GitHub Pages (ou tout hebergement statique)
 - **Versioning** : Git + GitHub (repo prive)
 
 ## Environnement de Deploiement
