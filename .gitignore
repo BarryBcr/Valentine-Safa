@@ -1,0 +1,21 @@
+# Environment
+.env
+*.env
+
+# Logs
+logs/
+*.log
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
+
+# Dependencies
+vendor/
+node_modules/
+
+# Temp
+tmp/
+*.tmp
+*.bak

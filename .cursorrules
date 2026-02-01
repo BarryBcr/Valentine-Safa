@@ -1,0 +1,17 @@
+# Cursor Rules - Valentine - Safa
+
+## Important Files
+1. CLAUDE.md - Full context
+2. HANDOFF.md - Known bugs
+3. CHANGELOG.md - Recent changes
+
+## Deployment (CRITICAL)
+Every change MUST be deployed to:
+1. GitHub: git push origin main
+2. Server: via SSH
+
+## After Changes
+1. Update CHANGELOG.md
+2. Commit + push
+3. Deploy to server
+4. Document issues in HANDOFF.md
