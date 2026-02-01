@@ -219,25 +219,73 @@
             }
         }
 
-        /* Responsive */
-        @media (max-width: 500px) {
-            .container {
-                padding: 30px 25px;
-                border-radius: 25px;
+        /* Tablet */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
             }
 
-            .title {
-                font-size: 1.8rem;
+            .container {
+                max-width: 400px;
+                padding: 35px 40px;
+                min-height: 480px;
             }
 
             .cute-image {
-                width: 140px;
-                height: 140px;
+                width: 160px;
+                height: 160px;
+                margin-bottom: 20px;
+            }
+
+            .title {
+                font-size: 2rem;
+                margin-bottom: 25px;
+            }
+
+            .celebration-gif {
+                width: 220px;
+                height: 220px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 500px) {
+            body {
+                padding: 10px;
+                min-height: 100dvh; /* Dynamic viewport height for mobile */
+            }
+
+            .container {
+                padding: 25px 20px;
+                border-radius: 25px;
+                max-width: 100%;
+                min-height: 450px;
+            }
+
+            .title {
+                font-size: 1.7rem;
+                margin-bottom: 20px;
+                padding: 0 5px;
+            }
+
+            .cute-image {
+                width: 130px;
+                height: 130px;
+                margin-bottom: 18px;
             }
 
             .btn {
-                padding: 12px 30px;
+                padding: 12px 28px;
                 font-size: 1rem;
+            }
+
+            .buttons-container {
+                gap: 15px;
+                min-height: 50px;
+            }
+
+            .hint-text {
+                font-size: 0.8rem;
             }
 
             .celebration-title {
@@ -245,8 +293,115 @@
             }
 
             .celebration-gif {
-                width: 200px;
-                height: 200px;
+                width: 180px;
+                height: 180px;
+            }
+
+            .celebration-message {
+                font-size: 1.05rem;
+            }
+
+            .heart {
+                font-size: 16px;
+            }
+        }
+
+        /* Small phones (iPhone SE, etc.) */
+        @media (max-width: 375px) {
+            .container {
+                padding: 20px 15px;
+                min-height: 420px;
+            }
+
+            .title {
+                font-size: 1.5rem;
+            }
+
+            .cute-image {
+                width: 110px;
+                height: 110px;
+                margin-bottom: 15px;
+            }
+
+            .btn {
+                padding: 10px 24px;
+                font-size: 0.95rem;
+            }
+
+            .celebration-title {
+                font-size: 2.2rem;
+            }
+
+            .celebration-gif {
+                width: 150px;
+                height: 150px;
+            }
+
+            .celebration-message {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Landscape mode on mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                min-height: auto;
+                padding: 20px 30px;
+                max-width: 500px;
+            }
+
+            .cute-image {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 10px;
+            }
+
+            .title {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+            }
+
+            .btn {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+
+            .hint-text {
+                margin-top: 8px;
+            }
+
+            .celebration-title {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+
+            .celebration-gif {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 10px;
+            }
+
+            .celebration-message {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Touch device improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .btn {
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .btn-yes:hover {
+                transform: none;
+            }
+
+            .btn-yes:active {
+                transform: scale(0.95);
             }
         }
     </style>
@@ -278,6 +433,9 @@
         // Create floating hearts in background
         function createFloatingHearts() {
             const hearts = ['💕', '💖', '💗', '💓', '💝', '🩷', '❤️'];
+            // Slower on mobile for better performance
+            const interval = window.innerWidth <= 500 ? 800 : 500;
+
             setInterval(() => {
                 const heart = document.createElement('div');
                 heart.className = 'heart';
@@ -288,7 +446,7 @@
                 document.body.appendChild(heart);
 
                 setTimeout(() => heart.remove(), 6000);
-            }, 500);
+            }, interval);
         }
 
         // Move No button to random position within container
@@ -313,13 +471,20 @@
             const mouseX = (e.clientX || e.touches?.[0]?.clientX || 0) - containerRect.left;
             const mouseY = (e.clientY || e.touches?.[0]?.clientY || 0) - containerRect.top;
 
+            // Smaller distance threshold on mobile
+            const isMobile = window.innerWidth <= 500;
+            const minDistance = isMobile ? 60 : 100;
+
             // Calculate position away from mouse/touch within container
+            let attempts = 0;
             do {
                 newX = padding + Math.random() * (maxX - padding);
                 newY = padding + Math.random() * (maxY - padding);
+                attempts++;
             } while (
-                Math.abs(newX - mouseX) < 100 &&
-                Math.abs(newY - mouseY) < 100
+                Math.abs(newX - mouseX) < minDistance &&
+                Math.abs(newY - mouseY) < minDistance &&
+                attempts < 50
             );
 
             noBtn.style.left = newX + 'px';
